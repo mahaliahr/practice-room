@@ -1,0 +1,54 @@
+setcps (130/60/4)
+
+-- 0.6
+
+
+-- layer
+d2 $ layer [id, slow 2, jux rev] $ splice "<6 8>" 8 $ chop 12 $ loopAt 4 $ sound "orchestra"
+# speed 0.9
+# gain (range 0.95 1.25 sine)
+# gain 0.9
+-- # freeze "1"
+
+d6 silence
+
+
+-- "8 4 4 5 2 2 3 2"
+-- vox 1 2
+d6 $ layer [id, fast 2, jux rev]
+$ every 2 (iter 2 . scramble 2)
+$ splice 32 "8 4 4 5 2 2 3 2" $ sound "vox-general:1"
+-- # speed 1.4
+# djf 0.4
+# lpf 1500
+# gain (range 0.95 1.1 sine)
+# gain "0.95"
+# freeze "1"
+
+-- layer / offset? speed?
+d6 $ off 0.25 (slow 4) $ layer [id, fast 2, jux rev]
+$ every 2 (slow 2 . scramble 2 ) $ fast 2
+$ every 4 (rev . degradeBy 0.5)
+$ every 2 (chunk 4 (iter 2 . scramble 2)) $ splice 32 "8 12 14 11 20 17 9 0" $ sound "vox-general:1"
+-- # speed 2
+# djf 0.4 # lpf 1500
+# gain (range 0.85 0.6 $ slow 2 sine)
+# pan sine
+# gain 0.
+
+d6 silence
+
+do
+  d4 silence
+  d1 silence
+  d10 silence
+  d11 silence
+  d8 silence
+  d6 silence
+  d16 silence
+  d7 $ fast 2 $ every 2 (jux rev) $ sound "<amencutup*8>" # n (irand 8)
+    # gain (range 0.95 1.2 sine)
+    # gain 1 # lpf 1800
+    # speed "1 1.2 1"
+
+hush

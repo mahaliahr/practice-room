@@ -1,0 +1,20 @@
+
+d5 $ n "[0 2]*4[0 0,5 5]*2" # sound "soskick"
+# gain 1.15
+-- # gain 0.95
+
+
+d5 $ layer [id, every 2 (fast 2)] $ every 2 (jux rev) $ n "0 0*2 ~ <0 4>" # sound "soskick"
+-- # gain 1.05
+# gain 0.95
+
+
+
+d14 silence
+
+-- end
+
+d5
+$ n "[[0 2]*4 [0 2]*4]" # sound "soskick"
+# gain 1.05
+# crush (range 7 4 sine)
