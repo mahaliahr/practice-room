@@ -1,0 +1,128 @@
+setcps 0.6
+
+setcps (130/60/4)
+
+
+d1 $ chop "6" $ loopAt 10 $ sound "kingston:1"
+-- # gain (range 0.4 0.8 sine)
+-- # speed 1.2
+-- # speed 0.5
+# hpf 3000
+-- # djf 0.7
+-- # xsdelay 0.1
+-- # pan (range 0.1 1.5 $ slow 2 sine)
+
+-- d1 $ slice 8 "0..8" $ sound "kingston"
+-- # gain (range 0.4 0.8 sine)
+-- -- # speed 1.2
+-- -- # speed 0.5
+-- -- # djf 0.7
+-- -- # xsdelay 0.1
+-- -- # pan (range 0.1 1.5 $ slow 2 sine)
+
+-- v nice but timing out
+-- d7 $ chop "8" $ loopAt 10 $ sound "dub:1"
+
+d7 $ chop "8" $ loopAt 8 $ sound "dub"
+# gain 1.1
+
+
+
+
+unsolo 7
+
+hush
+
+d2 silence
+
+d2 $ sometimes (every 4 (fast 2)) $ splice 55 "<[0 1 2 4 5][6 8 9 10 11]>"
+ $ sound "kingston"
+ # gain 1.25
+-- # speed 1.2
+-- # speed 0.5
+-- # djf 0.7
+-- # xsdelay 0.1
+-- # pan (range 0.1 1.5 $ slow 2 sine)
+
+
+edit the file (shorten)
+
+hush
+
+d12
+$ qt $ every 4 (rev)
+$ sound "<jungbass(3,8) jungbass:1*2>"
+# gain 1.1
+
+d4 $ fast 2
+$ sound "house:3(7,8)" # pan "1 1.2 2 0.5"
+# gain "0.9"
+# djf 0.4
+
+
+d4 $ fast 2 $ sometimes (striate 2)
+$ sound "<lo lo:2>(7,8)" # pan "1 1.2 2 0.5"
+# gain "0.9"
+
+d5 $ sometimes ( # octave 6) $ every 2 (striate 2) $ sound "bsguitar*8" # pan "1 1.2 2 0.5"
+-- # gain "0.9"
+# sustain 10
+
+hush
+
+d4
+-- $ striate "2 4" $ chop 4
+$ sound "pad:4"
+# speed 0.5
+-- # lpf 500
+# scram (range 0.01 0.03 sine)
+-- # gain (range 0.95 1.15 sine)
+-- # gain 0.8
+
+-- $ every 2 (scramble 4) >> sk-breaks:6 breaksss:6
+d10 $ every 2 (scramble 4 . fast 2) $ splice 8 "0 .. 7"
+$ sound "sk-breaks:3 <sk-breaks:6 breaksss>*2"
+-- # gain 1.1
+# lpf (range 3000 1000 sine)
+-- # squiz "0..2"
+
+d10 silence
+
+-- $ every 2 (scramble 4) >> sk-breaks:6 breaksss:6
+d10 $ jux rev $ every 2 (scramble 4 . fast 2) $ splice 8 "0 .. 7"
+$ sound "sk-breaks:3 <sk-breaks:6 breaksss>*2"
+-- # gain 1.1
+# hpf (range 3000 1000 sine)
+-- # squiz "0..2"
+
+-- ???
+d3 $ every 4 rev
+$ every 3 (# pan "1 1.2 0.8")
+$ sound "<clubkick bass2>(7,16)"
+-- # gain 1.15
+
+-- ???
+d3 $ every 4 rev
+$ every 3 (# pan "1 1.2 0.8")
+$ sound "<clubkick bass2>(9,16)"
+-- # gain 1.15
+
+d6 $ fast 2 $ every 2 (jux rev) $ sound "<amencutup*8>"
+# n (irand 8)
+# gain (range 0.95 1.2 sine)
+# gain 1.1
+# speed "1 1.2 1"
+
+d9 silence
+
+d9
+$ fast 2
+$ n (scale "rast" "0 .. 7") # sound "superchip"
+# gain "1.1"
+-- # sustain 0.8
+-- # room 0.25
+-- # octave "5 <5 6>"
+-- # gain "0.5 0.7 0.85"
+# octave "4 3 5"
+
+hush
