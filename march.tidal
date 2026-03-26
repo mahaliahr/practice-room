@@ -1,128 +1,300 @@
 setcps 0.6
 
-setcps (130/60/4)
-
-
-d1 $ chop "6" $ loopAt 10 $ sound "kingston:1"
--- # gain (range 0.4 0.8 sine)
--- # speed 1.2
--- # speed 0.5
-# hpf 3000
--- # djf 0.7
--- # xsdelay 0.1
--- # pan (range 0.1 1.5 $ slow 2 sine)
-
--- d1 $ slice 8 "0..8" $ sound "kingston"
--- # gain (range 0.4 0.8 sine)
--- -- # speed 1.2
--- -- # speed 0.5
--- -- # djf 0.7
--- -- # xsdelay 0.1
--- -- # pan (range 0.1 1.5 $ slow 2 sine)
-
--- v nice but timing out
--- d7 $ chop "8" $ loopAt 10 $ sound "dub:1"
-
-d7 $ chop "8" $ loopAt 8 $ sound "dub"
-# gain 1.1
-
-
-
-
-unsolo 7
+-- setcps (130/60/4)
 
 hush
 
-d2 silence
+-- shoutout to that chaotic breakfast in Kingston, JA
 
-d2 $ sometimes (every 4 (fast 2)) $ splice 55 "<[0 1 2 4 5][6 8 9 10 11]>"
- $ sound "kingston"
- # gain 1.25
--- # speed 1.2
--- # speed 0.5
--- # djf 0.7
--- # xsdelay 0.1
--- # pan (range 0.1 1.5 $ slow 2 sine)
+do
+d1 $ jux rev $ slice 4 "2 3 1 2" $ sound "kingston" # cut 1
+  # gain 1.4
 
+d1 silence
 
-edit the file (shorten)
+d5
+-- $ sometimes ( # octave 6) $ every 2 (striate 2)
+$ sound "bsguitar:4*8" # pan "1 1.2 2 0.5"
+# gain "1.15"
 
-hush
+d13 $ someCycles (jux rev)
+  $ every 2 (iter 4) $ fast 2 $ n "a'm c d d" # sound "tides"
+  # room 0.3
+  # djf 0.45
+  -- # octave 4
+  # gain (range 1.15 0.85 sine) # speed "1.5 1.6 1.2"
+  -- # gain 0.7
 
-d12
-$ qt $ every 4 (rev)
-$ sound "<jungbass(3,8) jungbass:1*2>"
-# gain 1.1
+do
+d1 $ qt $ stack [striate 2 . randslice 12 $ sound "kingston" # cut 1
+    # gain 1.5 # djf 0.8 # lpf 1800]
 
-d4 $ fast 2
-$ sound "house:3(7,8)" # pan "1 1.2 2 0.5"
-# gain "0.9"
-# djf 0.4
-
-
-d4 $ fast 2 $ sometimes (striate 2)
-$ sound "<lo lo:2>(7,8)" # pan "1 1.2 2 0.5"
-# gain "0.9"
-
-d5 $ sometimes ( # octave 6) $ every 2 (striate 2) $ sound "bsguitar*8" # pan "1 1.2 2 0.5"
--- # gain "0.9"
-# sustain 10
-
-hush
+d7 $ qt $ chop 4 $ loopAt 8 $ sound "dub"
+  # gain 1.15 # djf 0.4 # room 0.2
 
 d4
--- $ striate "2 4" $ chop 4
-$ sound "pad:4"
-# speed 0.5
--- # lpf 500
-# scram (range 0.01 0.03 sine)
--- # gain (range 0.95 1.15 sine)
--- # gain 0.8
+  $ fast 2
+  $ sound "house:6(7,8)" # pan "1 1.2 2 0.5"
+  # gain "1.05"
+  -- # djf 0.25
 
--- $ every 2 (scramble 4) >> sk-breaks:6 breaksss:6
-d10 $ every 2 (scramble 4 . fast 2) $ splice 8 "0 .. 7"
-$ sound "sk-breaks:3 <sk-breaks:6 breaksss>*2"
--- # gain 1.1
-# lpf (range 3000 1000 sine)
--- # squiz "0..2"
+
+
+-- fade out 7 ? >> quicker dub bass
+do
+d8 $ qt $ striate "4 8" $ sound "dub" # cut 1
+  # gain 1.25 # djf 0.4 # room 0.2
+d6 $ every 4 (jux rev) $ every 2 (hurry 2) $ n "[<0 4> 2 1 <3 4>, 5 ~ <3 4>*2 5, 1*8]"
+  # sound "[808bd]"
+  # gain "0.9"
+
+
+d10
+  $ fast 2 $ sometimes (striate 2)
+  $ sound "<hi lo:2>(7,8)" # pan "1 1.2 2 0.5"
+  # djf 0.7
+  -- # gain "0.9"
+
+do
+  d8 silence
+  d6 silence
+
+
+d12
+$ qt $ every 4 rev
+$ every 3 (# pan "1 1.2 0.7")
+$ sound "jungbass(3,8)"
+# gain 1.4
+
+
 
 d10 silence
 
--- $ every 2 (scramble 4) >> sk-breaks:6 breaksss:6
-d10 $ jux rev $ every 2 (scramble 4 . fast 2) $ splice 8 "0 .. 7"
-$ sound "sk-breaks:3 <sk-breaks:6 breaksss>*2"
+d10 $ fast 2 $ sometimes (jux rev) $ slice 8 "0 1 2 3 4 5 6 7 8 1" $ sound "regg" # legato 1
+# gain 1.05
+
+--
+
+d12 silence
+
+unsolo 14
+
+-- d14
+-- $ sometimes (fast 2 . jux rev)
+-- $ slice 20 "2 3 4 5 6" $ sound "regg-long" # cut 1
+-- # gain 1.15
+-- # lpf 2000
+-- -- # speed 0.8
+-- -- # freeze 1
+
+do
+  d1 silence
+  d4 silence
+  d6 silence
+  d8 silence
+  d10 silence
+  d11 silence
+  d7 $ splice 40 "0 1 2 3 4" $ sound "dub:1"
+    -- # speed 0.6
+    # djf 0.5
+    # gain (range 1.1 0.85 sine)
+  d5 $ striate "2 4" $ chop 4
+    $ sound "ade:3"
+    # scram (range 0.01 0.03 sine)
+    -- # gain (range 0.95 1.15 sine)
+    # gain 0.65
+
+
+  d10 $ fast 2 $ sometimes (striate 2)
+    $ sound "<hi lo:2>(7,8)" # pan "1 1.2 2 0.5"
+    # djf 0.25
+    # gain "0.8"
+
+
+same sound transition >>
+
+-- d8 $ echo "2 8" 0.2 0.8 $ striate 4 $ splice 60 "20 21 22 24" $ sound "dub:1"
+-- -- # speed 0.6
+-- # djf 0.5
 -- # gain 1.1
-# hpf (range 3000 1000 sine)
+
+d13 silence
+
+
+do
+d13
+-- $ striate 4
+  -- $ sometimes (fast 2 . jux rev)
+  -- $ rarely (# speed 0.1)
+  $ chop 8 $ loopAt 4 $ sound "regg:5"
+  # gain 0.8
+  # hpf 2000
+  # freeze 1
+
+d1 $ slice 8 "0 1 2 3" $ sound "regg:2"
+      # gain 1.1
+      # djf 0.5 # room 0.2
+
+
+  -- one more tune? 0 + 8
+d11 $ fast 2 $ sometimes (jux rev) $ slice 8 "0 1 2 3" $ sound "regg:8"
+  # gain 0.85
+
+
+d8 silence
+
+
+d12
+$ qt $ every 4 rev
+$ every 3 (# pan "1 1.2 0.7")
+$ sound "jungbass(3,8) jungbass:1*2"
+# gain 1.35
+
+
+-- d6 $ every 4 (jux rev) $ every 2 (hurry 2) $ n "[<0 4> 2 1 <3 4>, 5 ~ <3 4>*2 5, 1*8]"
+-- # sound "[808bd]"
+-- # gain "1.1"
+
+
+
+-----------------------------------------------------------------
+-- <<DANCE FFS>>
+
+-- bring in last maybe ?
+d10 $ every 2 (scramble 4 . fast 2) $ splice 8 "0 .. 7"
+$ sound "sk-breaks:4 breaksss:6 sk-breaks:3"
+# gain 0.95
+# lpf (range 3000 1000 sine)
 -- # squiz "0..2"
 
+-- -- $ every 2 (scramble 4) >> sk-breaks:6 breaksss:6
+-- d10 $ jux rev $ every 2 (scramble 4 . fast 2) $ splice 8 "0 .. 7"
+-- $ sound "sk-breaks:3 <sk-breaks:6 breaksss>*2"
+-- -- # gain 1.1
+-- # hpf (range 3000 1000 sine)
+-- -- # squiz "0..2"
+
 -- ???
-d3 $ every 4 rev
+d3 $ qt $ every 4 rev
 $ every 3 (# pan "1 1.2 0.8")
 $ sound "<clubkick bass2>(7,16)"
--- # gain 1.15
+# djf 0.5
+# gain 0.95
+
+d6 $ slow 2 $ every 4 (hurry 2) $ every 2 (jux rev)
+$ sound "bassfoo(5,16)"
+# gain 1
+# lpf "200"
+-- # distort 0.2
 
 -- ???
 d3 $ every 4 rev
 $ every 3 (# pan "1 1.2 0.8")
 $ sound "<clubkick bass2>(9,16)"
--- # gain 1.15
+# gain 1
+
+-----------------------------------------------------------------
 
 d6 $ fast 2 $ every 2 (jux rev) $ sound "<amencutup*8>"
-# n (irand 8)
-# gain (range 0.95 1.2 sine)
-# gain 1.1
-# speed "1 1.2 1"
+  # n (irand 8)
+  # gain (range 0.85 0.9 sine)
+  # gain 0.7
+  # speed "1 1.2 1"
+
+
+d6 silence
+
+-- d9
+-- $ fast 2
+-- $ n (scale "<major rast> <major six>" "0 .. 7") # sound "soskick"
+-- # gain "1.1"
+-- -- # sustain 2
+-- -- # freeze 1
+-- -- # room 0.25
+-- -- # octave "5 <5 6>"
+-- -- # gain "0.5 0.7 0.85"
+-- # octave "4 3 5"
+
+do
+  d13 silence
+  d11 silence
+  d3 silence
+  d6 silence
+  d10 silence
+  d8 silence
+
+  d7 silence
+
+-- cut ?
+d1 $ slice 8 "1 2 0 3" $ sound "regg:2" # cut 1
+        # gain 0.8
+        # djf 0.5 # room 0.2
+
+d5 silence
+
+-- d5
+-- $ striate "2 4" $ chop 4
+-- $ sound "padlong"
+-- # speed 0.6
+-- -- # lpf 500
+-- # scram (range 0.01 0.03 sine)
+-- # gain (range 0.75 1.1 sine)
+-- # gain 0.9
+
+
+d10 $ slow 2 $ sometimes (striate 2 . iter 2)
+$ n (scale "diminished" "[<0 2 5 7>]*<4 8>") # sound "plaits"
+# gain "1.1"
+# sustain 1
+# room 0.2 # lpf 1500
+# octave "5 <5 6>"
+# gain "0.7 0.85"
+# octave "3 2"
+
+-- future sub?
+d11
+-- $ layer [id, jux rev, slow 4]
+$ slow 2
+$ often (iter 2) $ rarely (# sustain 5)
+$ n (scale "<minor hexSus>" "0 <1 2> 3 4 <6 5> 2 3 5") # sound "gabor"
+-- # gain "1.1"
+# sustain 2
+-- # freeze 1
+# room 0.25
+# octave "5 <5 6>"
+# gain "0.5 0.7"
+# octave "4 3 5"
 
 d9 silence
 
 d9
-$ fast 2
-$ n (scale "rast" "0 .. 7") # sound "superchip"
-# gain "1.1"
--- # sustain 0.8
--- # room 0.25
--- # octave "5 <5 6>"
--- # gain "0.5 0.7 0.85"
+-- $ fast 2 $ often (iter 2)
+-- $ rarely (# sustain 2)
+$ rarely (palindrome) $ striate 2 $ n (scale "<minor hexSus>" "0 .. 7") # sound "superfm"
+-- # gain "1.1"
+# sustain 2
+-- # freeze 1
+# room 0.25 # distort 0.1
+# octave "5 <5 6>"
+# gain "0.6 "
 # octave "4 3 5"
+
+not sure??
+
+d4 $ every 3 (jux rev) $ slow 2 $ every 2 (scramble 8) $ arp "thumbup" $ n "c'min(3,8)"
+# sound "superfm"
+# octave 3
+# distort 0.35
+# gain 0.85
+
+-- end???#
+d14
+$ sometimes (fast 2 . jux rev)
+$ randslice 8 $ sound "regg-long" # cut 1
+# gain 0.6
+-- # distort (range 0 1 $ slow 2 sine )
+# hpf 2000
+
+d14 silence
 
 hush
