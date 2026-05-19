@@ -1,0 +1,32 @@
+
+-- setcps (130/60/8) --slow
+
+setcps (130/60/4)
+
+hush
+
+/////////////
+
+-- $ layer [id, jux rev, fast 2, striate 4]
+d8 $ sound "bd*16"
+# gain sine
+# distort 0.15
+
+d10 $ n"[1*<4 8>]*<2 4>" # sound "bassdm"
+# gain 1
+# gain cosine
+
+d6 silence
+
+-- cp clap
+d6 $ sometimes (jux rev) $ fast 2 $ n "0 0 <1 1*2> [0 1 3 4 5 6]/3"
+# sound "<click cp>"
+# djf 0.2
+
+d7 $ splice 10 "0..9" $ sound "break:17"
+# gain "1.05"
+-- # lpf "2000"
+
+d6 silence
+
+hush

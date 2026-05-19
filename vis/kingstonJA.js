@@ -4,7 +4,12 @@ s1.initVideo("/Users/mhenryrichards/Downloads/20250711_123257.mp4");
 
 s2.initVideo("/Users/mhenryrichards/Downloads/20250711_123318.mp4");
 
-a.start()
+
+s0.initCam()
+
+
+
+// ("/Users/mhenryrichards/Downloads/20250711_123318.mp4");
 
 
 a.setBins(5)
@@ -22,4 +27,4 @@ src(s1)
 
 src(s2).rotate().out(o2)
 
-render()
+render(o1)
