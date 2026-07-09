@@ -1,0 +1,34 @@
+-- -- ?????????? Ease in
+d3 $ sometimes (jux rev) $ every 3 (# speed 1.5) $  striate 4 $ slice 16 "0 .. 7" $ sound "juno:9"
+# lpf 600
+-- # hpf 1000
+# octave "2 4 3 2 4"
+# gain 1.1
+-- # gain 0.9
+
+
+d8 silence
+
+-- splice 2 4 / fm 13
+d4 $ iter 4 $ striate "2 4" $ splice "2 4" "0 1 2 3 4 5 6 7" $ sound "<fm:13>"
+# room 0.9
+# lpf "1000 600 300"
+# sz 0.9
+# gain 0.95
+# speed 0.95
+-- # speed 0.5
+
+-- Heavy
+d15 $ qt $ every 2 (hurry 2) $ every 2 (jux rev) $ sound "hardkick:4(5,16)"
+-- # gain 1.1
+# lpf "100"
+-- # gain 0.9
+
+11, 10 [13]
+
+7, 8
+
+d13 silence
+
+
+hush
