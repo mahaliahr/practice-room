@@ -1,0 +1,204 @@
+do
+  resetCycles
+
+-- 1-5 vocals
+
+d1 $ qtrigger $ loopAt 4 $ chop 32 $ sound "1kiss"
+# gain 1.3 # hpf 1500 # room 0.4
+# distort (range 0 0.3 $ slow 8 sine)
+# speed 0.9
+# crush (range 4 8 sine)
+-- # gain 1.4
+
+
+d1 $ qtrigger $ stack [
+      slice 85 "20 21 22 3 4 5 6 7 " $ sound "1kiss:2"
+      # gain 1.3 # hpf 1500 # room 0.4,
+      sometimes (jux rev) $ fast 2 $ n "0 0 <1 1*2> [0 1 3 4 5 6]/3"
+      # sound "clubkick <popkick:3 soskick>"]
+-- # gain
+
+
+////////
+
+-- $ loopAt 4 $ chop "16 32"
+d3 $ qtrigger
+-- $ loopAt 4
+$ someCycles (jux rev)
+-- $ every 1 ( fast 4)
+$ every 2 (iter "<4 8>")
+$ slice "30 10" "30 <36 37 39>" $ sound "1kiss"
+# gain 0.95
+-- # speed 1.6
+# djf 0.8
+# room 0.4
+
+
+unsolo 3
+
+d3 silence
+
+////////////////////////////////
+
+-- i like
+d3 $ qtrigger
+-- $ loopAt 4
+$ every 2 (jux rev)
+$ splice 2 "<2 4>" $ sound "dua"
+# gain 0.2
+-- # gain (range 1.1 0.5 $ slow 6 sine)
+-- # octave "5"
+# lpf 1000
+# room 0.4
+# sz 0.7
+# speed 0.5
+
+d2 silence
+
+
+-- 'lost in'
+d2 $ qtrigger
+$ every 4 (scramble 2) $ every 2 (# speed 0.85)
+-- $ loopAt "4" $ chop 32
+$ every 2 (jux rev)
+$ slice 24 "[0 1 2 3 4 5 6 7 8 9]"
+$ sound "dua:2"
+# gain 1
+# hpf 800
+# room 0.4
+-- # speed (range 0.8 0.5 $ slow 2 sine)
+-- # speed 0.5
+
+unsolo 2
+
+///////////////////////////////
+
+-- tonal
+d4 $ qtrigger
+$ every 4 (iter 2)
+$ loopAt "2" $ striateBy "32 16" (1/16)
+-- $ every 4 (jux rev)
+$ splice 4 "7 8 3 3 2 3 4 1"
+$ sound "dua:4"
+# gain 1.15
+# lpf (range 200 600 $ slow 2 sine)
+# lpq 0.2
+# room 0.4
+# speed "0.5 0.25"
+# gain 0.5
+
+
+-- FAST // $ every 2 (# speed "<0.75 1.5>")
+xfade 6 $ qtrigger $ sometimes (jux rev)
+-- $ loopAt "2" $ chop 32
+$ splice 2 "<2 4>"
+$ scramble 8 $ sound "dua"
+# gain 0.6 -- louder at end
+-- # lpf 1000
+# djf 0.35
+# room 0.4
+# speed 0.5
+
+
+d9 $ splice 10 "0..9" $ sound "break:17"
+# gain 0.7
+-- # lpf "2000"
+
+d9 silence
+
+-- pop / clubkick
+-- $ striate 2
+d10 $ sometimes (jux rev) $ sometimes (striate 2) $ fast 2 $ n "0 0 <1 1*2> [0 1 3 4 5 6]/3"
+# sound "clubkick <popkick:3 soskick>" # gain 0.6
+# lpf 1200
+
+d6 silence
+
+d11 $ brak $ every 2 (scramble 4) $ iter 2 $ n "0 0 0 [0 1 3 4 5 6]/3"
+# sound "superhat <clap superclap>"
+# gain 1.1
+
+d10 silence
+
+--
+-- -- ?????????????????
+-- d12 $ every 4 rev
+-- $ every 3 (# pan "1 1.2 0.7")
+-- $ sound "jungbass(3,8) jungbass:1*2"
+-- # gain 1.15
+--
+-- -- ????????
+-- d12 $ every 4 rev
+-- $ every 3 (# pan "1 1.2 0.7")
+-- $ sound "jungbass:1(7,16)"
+-- # gain 1.15
+
+
+d6
+-- $ slow 2
+$ every 2 (hurry 2) $ sometimes (iter 2) $ stack [
+ every 2 (jux rev) $ n "0*8" # sound "<superhat hh> ",
+ n "0*8" # sound "future(7,16) <popkick:7 popkick:4*2>"]
+-- # lpf 5000
+# gain 0.75
+# djf 0.75
+
+d2 silence
+
+
+///////////////////
+
+d6 $ slow 2
+$ layer [id, slow 4, jux rev]
+$ slow 2 $ qtrigger $ echo 4 0.2 0.75 $ arp "converge" $ n "a'min <c'maj bf'maj f'maj7 g'min7>" # s "superfm"
+# octave "5 <6 4>"
+# sustain 2
+# gain 0.2
+-- # scram (range 0.05 0.1 sine)
+
+-- percussive
+d7 $ fast 4 $ qtrigger $ n "a'min_ bf'maj f'maj7 g'min7" # s "supervibe"
+# octave "2"
+# gain 0.75
+# sustain 0.15
+
+////////////////
+
+d8
+$ slow "2 4"
+$ qtrigger $ fast 2 $ every 2 (iter "<2 4>") $ sometimes (chunk 2 (|+| note "<-5 +5 +7>")) $ n "c'maj [d d e ~] c <c d f>*2" # s "superfm"
+# octave "5 <6 5>"
+# sustain 0.5
+# gain 0.4
+# vowel "a"
+
+d9 $ sometimes (slow 2)$ stack [
+    every 2 (jux rev) $ fast 2 $ qtrigger $ n "<a'min ~ bf'maj> f'maj7" # s "supervibe"
+    # octave "3 2"
+    # sustain 1.5
+    # gain 0.6,
+    layer [id, slow 2, jux rev] $ chunk 4 (|+| note "<10 5> <-5 -10>") $ n "c'maj a'min" # s "superfm"
+    # gain 0.4
+    # octave "4"
+    # sustain 2
+    -- # voice 9
+    ]
+    # detune (range 0.2 0.8 sine)
+
+do
+  d6 silence
+  d9 silence
+
+hush
+
+-- outro>>>>>>
+
+d5 $ sound "bd*16"
+# gain (range 0.1 0.8 $ slow 4 sine)
+# distort 0.15
+
+d7 $ sound "bd*16"
+# gain 0.8
+# distort 0.15
+
+-- >>>>>>

@@ -1,0 +1,95 @@
+setcps (130/60/4)
+
+d1 $ striate "2 4" $ chop 4 $ sound "pad:5"
+# speed 0.6
+# lpf 500
+# scram (range 0.01 0.03 sine)
+-- # gain (range 0.95 1.15 sine)
+# gain 0.6
+
+-- layer / s(p)lice
+d2 $ layer [id, slow 2, jux rev] $ splice "<6 8>" 8 $ chop 12 $ loopAt 4 $ sound "orchestra"
+# speed 0.9
+# gain (range 0.95 1.25 sine)
+# gain 0.65
+-- # freeze "1"
+
+
+d1 silence
+
+
+-- "8 4 4 5 2 2 3 2"
+-- vox 1 2
+d6
+-- $ layer [id, fast 2, jux rev]
+$ every 2 (iter 2 . scramble 2)
+$ splice 32 "8 4 4 5 2 2 3 2" $ sound "vox-general:2"
+-- # speed 1.4
+# djf 0.4
+# lpf 1500
+# gain (range 0.95 1 sine)
+-- # gain 1.2
+-- # freeze "1"
+
+-- -- "8 4 4 5 2 2 3 2"
+-- -- vox 1 2
+d6 $ layer [id, fast 2, jux rev]
+$ every 2 (iter 2 . scramble 2)
+$ splice 32 "8 4 4 5 2 2 3 2" $ sound "vox-general:1"
+-- # speed 1.4
+# djf 0.4
+# lpf 1500
+# gain (range 0.95 1.1 sine)
+# gain "0.75"
+# freeze "1"
+
+-- layer / offset? speed?
+d7 $ off 0.25 (slow 4) $ layer [id, fast 2, jux rev]
+$ every 2 (slow 2 . scramble 2 ) $ fast 2
+$ every 4 (rev . degradeBy 0.5)
+$ every 2 (chunk 4 (iter 2 . scramble 2)) $ splice 32 "8 12 14 11 20 17 9 0" $ sound "vox-general:1"
+-- # speed 2
+# djf 0.4 # lpf 1500
+# gain (range 0.85 0.6 $ slow 2 sine)
+# pan sine
+# gain 0.4
+
+d7 silence
+
+
+d7 silence
+
+d5 $ layer [id, slow 2 . striate 2] $ fast 2 $ n "0*2 " # sound "soskick" # amp "0.3" # djf 0.8
+
+
+////////////// melody maybe ?
+
+-- prometheus
+d1  $ slow 2
+-- $ layer [id, hurry 2]
+$ off "0.25" (# sustain "<1.1 2>") $ jux rev
+-- $ chunk 4 (fast 2 .(|- n 12)) $ off 0.25 (|+ "7")
+$ n (scale "hexSus" "0 .. <7>") # sound "rhodes"
+-- # gain (range 1.15 0.85 sine)
+# lpf 250
+-- # lpq (range 0.05 0.2 sine)
+-- # gain 0.7
+
+-- -- minPent
+-- d10 $ chunk 4 (fast 2 . (|+ n 12)) $ layer [id, slow 4]
+-- $ struct (iter 4 "t t f t")
+-- $ n (scale "prometheus" "0 .. 7") # sound "sinosc"
+-- # gain 0.7
+-- # sustain 1.5
+--
+--
+-- -- !ease in
+-- d6
+-- $ sometimes (striate 2 . jux rev)
+-- $ struct (rarely inv "t(3,8)")
+-- $ n (scale "hexSus" "[0 1 2] 3 4 5 6") # sound "sinosc"
+--   -- # gain 0.45
+--   -- # legato (range 0.2 1.5 sine)
+--   # djf 0.3
+--   -- # squiz (range 1 5 $ slow 2 sine)
+--

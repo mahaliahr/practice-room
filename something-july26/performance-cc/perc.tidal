@@ -1,17 +1,13 @@
 /////////////////////////////////////////
 
-do
--- $ layer [id, jux rev, fast 2, striate 4]
-d3 $ sound "bd*16"
-  # gain sine
-  # distort 0.15
-  # amp 1
-  # djf 0.7
-d10 $ n"[1*4]*<2 4>" # sound "bassdm"
-  # gain 1
-  # gain cosine
-  # amp 1
-  # djf 0.7
+
+d3 $ stack [ sound "bd*16"
+    # gain sine
+    # distort 0.15,
+    n"[1*4]*<2 4>" # sound "bassdm"
+    # gain 0.6 # gain cosine ]
+    # amp 1
+    # djf 0.65
 
 
 -- d3 $ sound "bd*16"
@@ -32,7 +28,7 @@ do
 -- cp clap
 d6 $ sometimes (jux rev) $ fast 2 $ n "0 0 <1 1*2> [0 1 3 4 5 6]/3"
 # sound "<click cp>"
-# gain 1
+-- # gain 0.9
 -- # djf 0.1
 
 d7 $ splice 10 "0..9" $ sound "break:17"
@@ -51,12 +47,15 @@ $ sound "house(<5 7 9>, 16)" # pan "1 1.2 2 0.5"
 -- # gain "0.9"
 # squiz "0..2"
 
+d15 silence
 
 do
 d4 silence
+
 d15 $ qt $ splice 2 10 $ every 3 (jux rev)
   $ sound "amen_breaks:14"
-  # gain "1.1 1.15"
+  # gain "0.8"
+
 d3 $ sometimes (jux rev) $ every 3 (# speed 1.5) $  striate 4 $ slice 16 "0 .. 7" $ sound "juno:9"
   # lpf 600
 
@@ -74,6 +73,6 @@ d14 $ every 3 (hurry 2) $ striate "2" $ chunk 4 (|-| note 5) $ sometimes (jux re
   -- # octave 4
   # gain 0.55
 
-d3 silence
+d4 silence
 
 hush

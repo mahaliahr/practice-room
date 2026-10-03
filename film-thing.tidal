@@ -1,0 +1,19 @@
+d1 stack [
+$ n "0" # sound "future"
+]
+# gain 0.6
+
+d4 $ palindrome $ sometimes (jux rev) $ n (scale "chromatic" "0 .. <7 15>") # sound "rash"
+-- # gain 1.15
+# gain 0.9
+# pan sine
+
+d5 $ chop 4 $ often (# speed 1.2) $ loopAt 4 $ sound "[yearn, ade*2]"
+  # freeze 1
+  # gain 1.1
+  # speed 1.2
+
+d1 $ sometimes (fast 2 . jux rev )$ n "0 1 0 0 " # sound "[bassfoo, clubkick]"
+# gain
+
+hush

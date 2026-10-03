@@ -1,0 +1,70 @@
+once $ sound "orchestra"
+# gain 0.85
+# hpf 40
+
+
+d1 $ slice "20" "0 .. [5 10]" $ sound "orchestra"
+# gain 0.65
+# octave "3 4"
+# hpf 400
+
+d6 silence
+
+-- $ echo 4 0.2 0.5
+
+d4 $ slow 2 $ jux rev $ loopAt 8 $ chop "10" $ sound "orchestra"
+# gain 0.9
+# lpf 400
+
+d5 $ splice "20" "0 .. [5 10]" $ sound "orchestra"
+# gain 0.5
+# lpf 400
+
+d5 silence
+
+-- d6 $ fast 4 $ randslice 5 $ sound "orchestra"
+-- # hpf 400 # freeze 1 # gain 0.7
+
+d5 silence
+
+-- fragment this 4, 8
+d3 $ sometimes (jux rev) $ splice "20" "0 .. [5 10]" $ sound "orchestra"
+# gain 0.5
+# lpf 400
+
+d6 $ jux rev $ loopAt 4 $ chop "16 32" $ sound "orchestra"
+# lpf 1000
+# gain "0.9 0.8 0.7"
+
+d5 $ sometimes (jux rev) $ slice "20" "0 .. [5 10]" $ sound "orchestra"
+# gain 0.5
+-- # octave "6"
+
+d5 silence
+
+-- striate and cmaj
+
+-- $ striate 2 $ sometimes (jux rev)
+d9   $ fast 2 $ striate 2 $ chunk 4 (|- note 5) $ n "c'min"
+-- $ chunk 4 (|- note 5)
+      # sound "superfm"
+      # room 0.3
+      # pan rand
+      -- # gain 0.5
+      # octave "4 5 6"
+
+do
+  d1 silence
+  d4 silence
+  d5 silence
+  d9 silence
+  d6 silence
+
+d4 $ slow 2 $ jux rev $ loopAt 8 $ chop "10" $ sound "orchestra"
+  # gain 0.5
+  # lpf 400
+
+d1 $ slice "20" "0 .. [5 10]" $ sound "orchestra"
+  # gain 0.5
+  # octave "3 4"
+  # hpf 400

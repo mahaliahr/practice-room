@@ -1,0 +1,139 @@
+10|13|9|11|2
+
+hush
+
+-- -- #0
+-- d10 $ qtrigger $ loopAt 2 $ chop 16 $ sound "amen_breaks:6"
+-- -- # lpf 2500
+-- -- # gain 0.7
+--
+-- d7 silence
+--
+-- d13 $ qtrigger $ stack [
+--   splice 2 10 $ every 3 (jux rev) $ sound "breaksss:14",
+--   splice 2 10 $ every 3 (jux rev) $ every 2 (scramble 4) $ sound "amen_breaks:28"]
+-- # gain "0.85"
+-- -- # lpf 5000
+
+unsolo 13
+
+-- -- ie. 8 -> 1 2 3 4
+-- d3 $ every 2 (striate "<4 8>") $ striate 2 $ splice 8 "1 1 1 1" $ sound "breaksss:6"
+-- # gain 1.1
+-- -- # hpf 1000
+-- -- # gain (range 0.6 0.85 sine)
+-- -- # gain 1
+--
+-- d3 $ chop 8 $ loopAt 2 $ sound "breaksss:6"
+-- -- # gain 0.9
+
+d7 $ fast 2 $ every 2 (jux rev) $ sound "<amencutup*8>" # n (irand 8)
+# gain (range 0.95 1.2 sine)
+# gain 1.15
+# speed "1 1.2 1"
+
+d7 silence
+
+
+do
+  d3 silence
+  d4 silence
+  d13 silence
+
+  d7 silence
+
+d10 $ qtrigger $ loopAt 2 $ chop 16 $ sound "amen_breaks"
+# lpf 2500
+# gain 0.7
+
+
+//////////////
+
+-- d13
+d13 $ every 4 (jux rev)
+$ sound "[clubkick:4,<lo hi>](7,16)"
+# gain 0.9
+# room 0.35
+# djf 0.8
+
+unsolo 9
+
+-- bass0?
+d9 $ qt $ chunk 4 (iter "2 4". scramble "<2 4>") $ stack [
+  every 2 (jux rev) $ n "[[1 2] 2 [3 2] 4][1 2 3 4]" # sound "[bd <bassdm>, super808]",
+  n "[[1 2] 2 [3 2] 4]*2" # sound "[mt,supersnare]" # n (irand 8)
+]
+# gain 1.05
+# lpf 1000
+# djf 0.6
+
+do
+  d11 silence
+
+  d1 silence
+  d13 silence
+
+
+-- loopAt
+d8 $ chop 16 $ loopAt 2 $ sound "cyborg:2"
+# gain 0.6
+
+d8 silence 
+
+change to differeent break >>>
+
+d11 -- d4 after shift
+$ qtrigger $ splice 2 8
+$ sound "breaksss"
+# gain 0.8
+
+unsolo 11
+
+
+d4 $ palindrome $ sometimes (jux rev) $ n (scale "chromatic" "0 .. <7 15>") # sound "rash"
+# gain 0.5
+# pan sine
+-- # crush (range 4 9 sine)
+
+>>>>>>>
+
+-- d2 $ off "0.25 0.5" (fast "2") $ off 0.75 (jux rev)
+-- $ stack [sound "cpu2(3,8)" # gain 1.1,
+-- sound "kick(7,8)" # gain 0.5]
+-- # djf 0.2
+
+/////// melody
+
+do
+d1 $ striate "2 4" $ chop 4 $ sound "pad:5"
+  # speed 0.6
+  # lpf 500
+-- # scram (range 0.01 0.03 sine)
+  -- # gain (range 0.95 1.15 sine)
+  # gain 0.9
+
+d16 $ brak $ layer [id, slow 2, jux rev] $ striate "<4 2>" $ n "0 .. 3"
+  # sound "[super808, 808:1]"
+-- # sustain 1.2
+  # gain "1"
+# gain 0.8
+  -- # octave "3 2"
+
+d16 silence
+
+unsolo 16
+
+
+d13 silence
+
+hush
+
+
+do
+  d2 silence
+  d10 silence
+  d13 silence
+  d9 silence
+  d11 silence
+  d8 silence
+  d3 silence
