@@ -1,0 +1,15 @@
+d1 $ slice 16 "7 8 0 2 3 8 11 10" $ sound "brainrot" # cut 1 # speed 1.5
+
+d3 $ rarely (fast 2 . jux rev) $ n "[[<2 3*4>]]" # sound "[[bd, house] glitch2 future]" # gain 1.1
+
+d5 $ splice 2 2 $ sometimes (rev) $ sound "break:3" # gain 0.9 # cut 1
+
+d7 $ every 3 (striate "<2 4>" . scramble 2) $ n "<0 2 7>" # sound "superhammond"
+# sustain "20 50" # gain 0.2
+
+d3 silence
+
+d2 $ chop 2 $ striate 8 $ loopAt 4 $ sound "voiceover" # cut 1 # amp 1.05
+
+
+hush
